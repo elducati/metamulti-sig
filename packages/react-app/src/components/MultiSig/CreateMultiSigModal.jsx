@@ -103,47 +103,44 @@ export default function CreateMultiSigModal({
 
       if (!validateFields()) {
         setPendingCreate(false);
+        // eslint-disable-next-line no-throw-literal
         throw "Field validation failed.";
       }
 
       tx(
-        writeContracts[contractName].create(
-          selectedChainId,
-          owners,
-          signaturesRequired,
-          {
-            value: ethers.utils.parseEther("" + parseFloat(amount).toFixed(12)),
+        writeContracts[contractName].create(selectedChainId, owners, signaturesRequired, {
+          value: ethers.utils.parseEther("" + parseFloat(amount).toFixed(12)),
+        }),
+        (update) => {
+          if (update && (update.error || update.reason)) {
+            console.log("tx update error!");
+            setPendingCreate(false);
+            setTxError(true);
           }
-        ),
-      (update) => {
-        if (update && (update.error || update.reason)) {
-          console.log("tx update error!");
-          setPendingCreate(false);
-          setTxError(true);
-        }
 
-        if (update && update.code) {
-          setPendingCreate(false);
-          setTxSent(false);
-        }
+          if (update && update.code) {
+            setPendingCreate(false);
+            setTxSent(false);
+          }
 
-        if (update && (update.status === 'confirmed' || update.status === 1)) {
-          console.log("tx update confirmed!");
-          setPendingCreate(false);
-          setTxSuccess(true);
-          setTimeout(() => {
-            setIsCreateModalVisible(false);
-            resetState();
-          }, 2500);
-        }
-      }).catch((err) => {
+          if (update && (update.status === "confirmed" || update.status === 1)) {
+            console.log("tx update confirmed!");
+            setPendingCreate(false);
+            setTxSuccess(true);
+            setTimeout(() => {
+              setIsCreateModalVisible(false);
+              resetState();
+            }, 2500);
+          }
+        },
+      ).catch(err => {
         setPendingCreate(false);
         throw err;
       });
 
       setTxSent(true);
     } catch (e) {
-      console.log('CREATE MUTLI-SIG SUBMIT FAILED: ', e);
+      console.log("CREATE MUTLI-SIG SUBMIT FAILED: ", e);
     }
   };
 

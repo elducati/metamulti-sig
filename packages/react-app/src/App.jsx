@@ -1,16 +1,7 @@
-import {
-  Button,
-  Col,
-  Menu,
-  Row,
-  Alert,
-  Select,
-} from "antd";
+import { Button, Col, Menu, Row, Alert, Select } from "antd";
 import "antd/dist/antd.css";
-import {
-  useBalance,  
-  useContractReader,
-} from "eth-hooks";
+import { Divider } from "antd-mobile";
+import { useBalance, useContractReader } from "eth-hooks";
 import { useUserProviderAndSigner } from "eth-hooks/useUserProviderAndSigner"
 import { useOnBlock } from "eth-hooks/useOnBlock";
 import { useGasPrice } from "eth-hooks/useGasPrice";
@@ -30,9 +21,9 @@ import {
   ThemeSwitch,
   NetworkDisplay,
   FaucetHint,
-  NetworkSwitch  
+  NetworkSwitch,
 } from "./components";
-import {CreateMultiSigModal} from "./components/MultiSig"
+import { CreateMultiSigModal } from "./components/MultiSig";
 import { NETWORKS, ALCHEMY_KEY } from "./constants";
 import externalContracts from "./contracts/external_contracts";
 //import multiSigWalletABI from "./contracts/multi_sig_wallet";
@@ -204,7 +195,7 @@ function App(props) {
         setMultiSigs(multiSigsForUser);
       }
     }
-  }, [ownersMultiSigEvents, address]);
+  }, [ownersMultiSigEvents, address, currentMultiSigAddress]);
 
   const [signaturesRequired, setSignaturesRequired] = useState();
   const [nonce, setNonce] = useState(0);
@@ -363,7 +354,9 @@ function App(props) {
           />
           <Select value={[currentMultiSigAddress]} style={{ width: 120 }} onChange={handleMultiSigChange}>
             {multiSigs.map((address, index) => (
-              <Option key={index} value={address}>{address}</Option>
+              <Option key={index} value={address}>
+                {address}
+              </Option>
             ))}
           </Select>
           {networkSelect}
@@ -493,6 +486,7 @@ function App(props) {
       <ThemeSwitch />
 
       {/* 👨‍💼 Your account is in the top right with a wallet at connect options */}
+      
       <div style={{ position: "fixed", textAlign: "right", right: 0, top: 0, padding: 10 }}>
         <div style={{ display: "flex", flex: 1, alignItems: "center" }}>
           {USE_NETWORK_SELECTOR && (
@@ -517,11 +511,12 @@ function App(props) {
             blockExplorer={blockExplorer}
           />
         </div>
+        
         {yourLocalBalance.lte(ethers.BigNumber.from("0")) && (
           <FaucetHint localProvider={localProvider} targetNetwork={targetNetwork} address={address} />
         )}
       </div>
-
+      
       {/* 🗺 Extra UI like gas price, eth price, faucet, and support: */}
       <div style={{ position: "fixed", textAlign: "left", left: 0, bottom: 20, padding: 10 }}>
         <Row align="middle" gutter={[4, 4]}>
