@@ -17,7 +17,7 @@ const main = async () => {
   // ! OR CUSTOM DEPLOY
   // * ----------------
   // custom deploy (to use deployed addresses dynamically for example:)
-  const YourContract = await deploy("YourContract",[31337,["0x22FECa197670B1EA09AB918A5D5954315Ff42bE7"],1])
+  const YourContract = await deploy("MultiSigWallet",[31337,["0x22FECa197670B1EA09AB918A5D5954315Ff42bE7"],1])
   await YourContract.transferOwnership("0x22FECa197670B1EA09AB918A5D5954315Ff42bE7")
 
 

@@ -1,18 +1,26 @@
 import React from "react";
-import { Modal } from "antd";
-import Address from "./Address";
-import Balance from "./Balance";
-const TransactionDetailsModal = function ({visible, handleOk, mainnetProvider, price, txnInfo = null}) {
+import { Modal, Button } from "antd";
+import { Address, Balance } from "..";
+import { ethers } from "ethers";
+
+export default function TransactionDetailsModal({visible, handleOk, handleCancel, mainnetProvider, price, txnInfo = null, showFooter = false}) {
   return (
     <Modal
       title="Transaction Details"
       visible={visible}
-      onCancel={handleOk}
+      onCancel={handleCancel}
       destroyOnClose
       onOk={handleOk}
-      footer={null}
       closable
       maskClosable
+      footer={showFooter ? [
+        <Button key="cancel" onClick={handleCancel}>
+          Cancel
+        </Button>,
+        <Button key="ok" type="primary" onClick={handleOk}>
+          Propose
+        </Button>,
+      ] : null}
     >
       {txnInfo && (
         <div>
@@ -31,11 +39,16 @@ const TransactionDetailsModal = function ({visible, handleOk, mainnetProvider, p
                   <Address fontSize={16} address={txnInfo.args[index]} ensProvider={mainnetProvider} />
                 </div>
               );
-            }
-            if (element.type === "uint256") {
+            } else if (element.type === "uint256") {
               return (
                 <p key={element.name}>
                   {element.name === "value" ? <><b>{element.name} : </b> <Balance fontSize={16} balance={txnInfo.args[index]} dollarMultiplier={price} /> </> : <><b>{element.name} : </b> {txnInfo.args[index] && txnInfo.args[index].toNumber()}</>}
+                </p>
+              );
+            } else {
+              return (
+                <p key={element.name}>
+                  {<><b>{element.name} : </b> {txnInfo.args[index]}</>}
                 </p>
               );
             }
@@ -49,5 +62,3 @@ const TransactionDetailsModal = function ({visible, handleOk, mainnetProvider, p
     </Modal>
   );
 };
-
-export default TransactionDetailsModal;
