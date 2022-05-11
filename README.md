@@ -7,7 +7,7 @@
 Create multiple multisignature wallets and see their details as well as propose, execute, and sign transactions - all in just a few clicks.
 
 <img width="1131" alt="image" src="https://github.com/elducati/metamulti-sig/blob/master/packages/react-app/public/Screenshot%20from%202022-05-11%2008-58-18.png?raw=true">
-<img width="575" alt="image" src="hhttps://github.com/elducati/metamulti-sig/blob/master/packages/react-app/public/Screenshot%20from%202022-05-11%2008-58-49.png?raw=true">
+<img width="575" alt="image" src="https://github.com/elducati/metamulti-sig/blob/master/packages/react-app/public/Screenshot%20from%202022-05-11%2008-58-49.png?raw=true">
 <img width="1123" alt="image" src="https://github.com/elducati/metamulti-sig/blob/master/packages/react-app/public/Screenshot%20from%202022-05-11%2008-59-30.png?raw=true">
 
 # 🏄‍♂️ Getting Started Locally
