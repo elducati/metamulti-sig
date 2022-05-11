@@ -2,7 +2,7 @@
 
 🚀 Built with [Scaffold-Eth](https://github.com/scaffold-eth/scaffold-eth)
 
-✨ Demo deployed on : multisig-seashore.surge.sh
+✨ Demo deployed on : [multisig-seashore.surge.sh](https://multisig-seashore.surge.sh/)
 
 Create multiple multisignature wallets and see their details as well as propose, execute, and sign transactions - all in just a few clicks.
 
@@ -14,7 +14,7 @@ Create multiple multisignature wallets and see their details as well as propose,
 
 Prerequisites: [Node (v16 LTS)](https://nodejs.org/en/download/) plus [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [Git](https://git-scm.com/downloads)
 
-> clone/fork 🪄 MaaS:
+> clone/fork 🪄 metamulti-sig:
 
 ```bash
 git clone https://github.com/elducati/metamulti-sig.git
@@ -50,6 +50,35 @@ yarn backend
 ```
 
 📱 Open http://localhost:3000 to see the app
+
+---
+
+### 🚢 Ship it 🚁
+
+📡 Edit the `defaultNetwork` to [your choice of public EVM networks](https://ethereum.org/en/developers/docs/networks/) in `packages/hardhat/hardhat.config.js`
+
+👩‍🚀 You will want to run `yarn account` to see if you have a **deployer address**
+
+🔐 If you don't have one, run `yarn generate` to create a mnemonic and save it locally for deploying.
+
+⛽️ You will need to send ETH to your **deployer address** with your wallet.
+
+
+ >  🚀 Run `yarn deploy --network default-network` to deploy your smart contract to a public network (selected in hardhat.config.js)
+
+ 📦  Run `yarn build` to package up your frontend.
+ 
+💽 Upload your app to surge with `yarn surge` (you could also `yarn s3` or maybe even `yarn ipfs`?)
+
+>  😬 Windows users beware!  You may have to change the surge code in `packages/react-app/package.json` to just `"surge": "surge ./build",`
+
+⚙ If you get a permissions error `yarn surge` again until you get a unique URL, or customize it in the command line.
+
+> 📝 you will use this deploy URL to submit to [SpeedRunEthereum.com](https://speedrunethereum.com).
+
+🚔 Traffic to your url might break the [Infura](https://infura.io/) rate limit, edit your key: `constants.js` in `packages/ract-app/src`.
+
+---
 
 # 📚 Documentation
 
