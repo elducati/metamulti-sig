@@ -1,102 +1,62 @@
-# 🏗 scaffold-eth - signature recover example
+# 🏗 Multi-Sig Wallet
 
-> an example of how to sign with the frontend and recover/verify signer in YourContract
+🚀 Built with [Scaffold-Eth](https://github.com/scaffold-eth/scaffold-eth)
 
----
+✨ Demo deployed on : multisig-seashore.surge.sh
 
-## quickstart
+Create multiple multisignature wallets and see their details as well as propose, execute, and sign transactions - all in just a few clicks.
+
+<img width="1131" alt="image" src="https://user-images.githubusercontent.com/12888080/159298438-ade3d676-5275-4c6e-978b-9421bcb5f746.png">
+<img width="575" alt="image" src="https://user-images.githubusercontent.com/12888080/159298592-3fbfd03e-c319-41ce-8008-153d1cfd2a1d.png">
+<img width="1123" alt="image" src="https://user-images.githubusercontent.com/12888080/159298776-dd498375-4554-444a-adb5-9272f7dcaec0.png">
+
+# 🏄‍♂️ Getting Started Locally
+
+Prerequisites: [Node (v16 LTS)](https://nodejs.org/en/download/) plus [Yarn](https://classic.yarnpkg.com/en/docs/install/) and [Git](https://git-scm.com/downloads)
+
+> clone/fork 🪄 MaaS:
 
 ```bash
-git clone https://github.com/scaffold-eth/scaffold-eth-examples.git signature-recover
-
-cd signature-recover
-
-git checkout signature-recover
+git clone https://github.com/elducati/metamulti-sig.git
 ```
 
-```bash
+> install and start your 👷‍ Hardhat chain:
 
+```bash
+cd metamulti-sig
 yarn install
-
-```
-
-> you might get node-gyp errors, ignore them and run:
-
-```bash
-
-yarn start
-
-```
-
-> in a second terminal window:
-
-```bash
-
 yarn chain
-
 ```
 
-> in a third terminal window:
+> in a second terminal window, start your 📱 frontend:
 
 ```bash
-
-yarn deploy
-
+cd metamulti-sig
+yarn start
 ```
 
-🔏 Edit your smart contract `YourContract.sol` in `packages/hardhat/contracts`
+> in a third terminal window, 🛰 deploy your contract:
 
-📝 Edit your frontend `App.jsx` in `packages/react-app/src`
+```bash
+cd metamulti-sig
+yarn deploy
+```
+
+> in a fourth terminal window, 🗄 start your backend:
+
+```bash
+cd metamulti-sig
+yarn backend
+```
 
 📱 Open http://localhost:3000 to see the app
 
+# 📚 Documentation
 
-On deploy, trasfer the ownership to your frontend address in `packages/hardhat/scripts/deploy.js`:
+Documentation, tutorials, challenges, and many more resources, visit: [docs.scaffoldeth.io](https://docs.scaffoldeth.io)
 
-![image](https://user-images.githubusercontent.com/2653167/98977842-5013ac80-24d6-11eb-8ded-8780d54701dd.png)
+# 💌 P.S.
 
-> redeploy your contract so you will be the owner:
+🌍 You need an RPC key for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/react-app/src/constants.js` with your new key.
 
-```bash
-
-yarn deploy
-
-```
-
-(You can verify the `owner` in the `debug` tab)
-
-YourContract should start with 0.1 ETH in it.
-
-Let's sign a message with the owner to send an address some of that ETH in YourContract.
-
-Enter an address and amount to send, then click `HASH`:
-
-![image](https://user-images.githubusercontent.com/2653167/98979165-40956300-24d8-11eb-9eff-6b441704d9d1.png)
-
-Then, sign the hash using the `owner` account:
-
-![image](https://user-images.githubusercontent.com/2653167/98979245-5f93f500-24d8-11eb-87a5-9e85d8d32cbb.png)
-
-In a different browser (or incognito), navigate to `http://localhost:3000/` and you should have a different address (in the top right).
-
-Give this new address some gas from the faucet.
-
-In the new browser, put in the same `to address` and `value` and you should get the same `hash`:
-
-Instead of signing it with this second account, copy/paste the `signature` from the `owner` (previous signature):
-
-![image](https://user-images.githubusercontent.com/2653167/98979564-bbf71480-24d8-11eb-8707-da2bea7da118.png)
-
-Click `SEND` and you should see that the transaction is sent from the non-owner address and is able to send money out of YourContract on behalf of the owner!
-
-![image](https://user-images.githubusercontent.com/2653167/98980004-50fa0d80-24d9-11eb-8884-49b7a9dbbecc.png)
-
-![image](https://user-images.githubusercontent.com/2653167/98979955-3c1d7a00-24d9-11eb-8878-62b938139612.png)
-
-🎉 🍾 🎊 🥳 🎉 🍾 🎊 🥳 🎉 🍾 🎊 🥳
-
-[Learn more about Meta Transactions](https://medium.com/@austin_48503/ethereum-meta-transactions-90ccf0859e84)
-
-[eth.build video on message signing with a private key](https://youtu.be/9LtBDy67Tho)
-
-[eth.build video on Meta Transactions](https://www.youtube.com/watch?v=CbbcISQvy1E&list=PLJz1HruEnenCXH7KW7wBCEBnBLOVkiqIi&index=10)
+📣 Make sure you update the `InfuraID` before you go to production. Huge thanks to [Infura](https://infura.io/) for our special account that fields 7m req/day!
