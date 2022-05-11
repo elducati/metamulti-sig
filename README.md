@@ -74,8 +74,6 @@ yarn backend
 
 ⚙ If you get a permissions error `yarn surge` again until you get a unique URL, or customize it in the command line.
 
-> 📝 you will use this deploy URL to submit to [SpeedRunEthereum.com](https://speedrunethereum.com).
-
 🚔 Traffic to your url might break the [Infura](https://infura.io/) rate limit, edit your key: `constants.js` in `packages/ract-app/src`.
 
 ---
@@ -85,6 +83,7 @@ yarn backend
 Documentation, tutorials, challenges, and many more resources, visit: [docs.scaffoldeth.io](https://docs.scaffoldeth.io)
 
 # 💌 P.S.
+Credit to https://github.com/stevenpslade/maas
 
 🌍 You need an RPC key for testnets and production deployments, create an [Alchemy](https://www.alchemy.com/) account and replace the value of `ALCHEMY_KEY = xxx` in `packages/react-app/src/constants.js` with your new key.
 
